@@ -1,0 +1,39 @@
+﻿<Window x:Class="FatigueLifeTestMachine.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FatigueLifeTestMachine.Views"
+        xmlns:cal="http://www.caliburnproject.org"
+        mc:Ignorable="d"
+        Title="MainView" Height="990" Width="1760" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="TabStyle" TargetType="{x:Type TabItem}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Border x:Name="HeaderBorder" BorderThickness="0,0,0,1" BorderBrush="LightGray">
+                            <TextBlock x:Name="Header" Text="{Binding DisplayName}"/>
+                        </Border>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type TabItem}}}" Value="True">
+                                <Setter TargetName="Header" Property="Foreground" Value="#009ad6"/>
+                                <Setter TargetName="HeaderBorder" Property="BorderBrush" Value="#009ad6"/>
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <TabControl ItemsSource="{Binding Items}" SelectedItem="{Binding ActiveItem, Mode=TwoWay}" ItemContainerStyle="{StaticResource TabStyle}">
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <ContentControl cal:View.Model="{Binding}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" IsTabStop="False" />
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+    </Grid>
+</Window>
