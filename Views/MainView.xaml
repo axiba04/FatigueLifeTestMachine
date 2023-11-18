@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FatigueLifeTestMachine.Views"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
         Title="MainView" Height="990" Width="1760" WindowStartupLocation="CenterScreen">
@@ -28,12 +29,29 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <TabControl ItemsSource="{Binding Items}" SelectedItem="{Binding ActiveItem, Mode=TwoWay}" ItemContainerStyle="{StaticResource TabStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <!--<TabControl Grid.RowSpan="2" ItemsSource="{Binding Items}" SelectedItem="{Binding ActiveItem, Mode=TwoWay}" ItemContainerStyle="{StaticResource TabStyle}">
             <TabControl.ContentTemplate>
                 <DataTemplate>
                     <ContentControl cal:View.Model="{Binding}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" IsTabStop="False" />
                 </DataTemplate>
             </TabControl.ContentTemplate>
-        </TabControl>
+        </TabControl>-->
+        <ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding ActiveItem, Mode=TwoWay}">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding DisplayName}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ContentControl Grid.Row="2" cal:View.Model="{Binding ActiveItem}"/>
     </Grid>
 </Window>
