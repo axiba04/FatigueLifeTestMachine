@@ -7,7 +7,7 @@
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
-        Title="MainView" Height="990" Width="1760" WindowStartupLocation="CenterScreen">
+        Title="常规疲劳寿命试验机" Height="990" Width="1760" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="TabStyle" TargetType="{x:Type TabItem}">
             <Setter Property="Background" Value="Transparent"/>
@@ -27,10 +27,53 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="ListBoxStyle" BasedOn="{StaticResource ListBoxBaseStyle}" TargetType="ListBox">
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <!--<Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding DisplayName}"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>-->
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <Border x:Name="ListBoxBorder" BorderThickness="0.5" BorderBrush="LightGray" CornerRadius="2" Padding="5,2,5,2">
+                                        <TextBlock Text="{Binding DisplayName}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="#7bbfea" TargetName="ListBoxBorder"/>
+                                        </Trigger>
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="IsSelected" Value="False"/>
+                                                <Condition Property="IsMouseOver" Value="True"/>
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="Background" Value="#E5E4E2" TargetName="ListBoxBorder"/>
+                                        </MultiTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="35"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <!--<TabControl Grid.RowSpan="2" ItemsSource="{Binding Items}" SelectedItem="{Binding ActiveItem, Mode=TwoWay}" ItemContainerStyle="{StaticResource TabStyle}">
@@ -40,18 +83,7 @@
                 </DataTemplate>
             </TabControl.ContentTemplate>
         </TabControl>-->
-        <ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding ActiveItem, Mode=TwoWay}">
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal"/>
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding DisplayName}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <ListBox BorderThickness="0,0,0,1" BorderBrush="LightGray" Style="{StaticResource ListBoxStyle}" ItemsSource="{Binding Items}" SelectedItem="{Binding ActiveItem, Mode=TwoWay}"/>
         <ContentControl Grid.Row="2" cal:View.Model="{Binding ActiveItem}"/>
     </Grid>
 </Window>

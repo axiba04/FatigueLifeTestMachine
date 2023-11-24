@@ -21,10 +21,10 @@ namespace FatigueLifeTestMachine
 
         protected override void Configure()
         {
-            ContainerInstance.Register<IWindowManager, WindowManager>();
+            ContainerInstance.RegisterSingleton<IWindowManager, WindowManager>();
             ContainerInstance.RegisterSingleton<IEventAggregator, EventAggregator>();
-            ContainerInstance.RegisterSingleton<MonitorViewModel, MonitorViewModel>();
             ContainerInstance.RegisterSingleton<ParametersViewModel, ParametersViewModel>();
+            ContainerInstance.RegisterSingleton<MonitorViewModel, MonitorViewModel>();
             ContainerInstance.RegisterSingleton<MainViewModel, MainViewModel>();
             ContainerInstance.Verify();
         }
