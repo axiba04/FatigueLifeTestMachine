@@ -14,8 +14,8 @@ namespace FatigueLifeTestMachine.Models
         private double? _monitorValue = null;
         public double? MonitorValue { get => _monitorValue; set => _monitorValue = value; }
 
-        private double? _maxAlarmValue = null;
-        public double? MaxAlarmValue { get => _maxAlarmValue; set => _maxAlarmValue = value; }
+        private double _minAlarmValue;
+        public double MinAlarmValue { get => _minAlarmValue; set => _minAlarmValue = value; }
 
         private double? _minAlarmValue = null;
         public double? MinAlarmValue { get => _minAlarmValue; set => _minAlarmValue = value; }
