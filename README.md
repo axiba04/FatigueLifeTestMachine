@@ -1,0 +1,3 @@
+# FatigueLifeTestMachine
+测试监控软件的demo
+可以监控传感器传来的实时数据并绘制出变化曲线
