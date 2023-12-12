@@ -25,6 +25,7 @@ namespace FatigueLifeTestMachine
             ContainerInstance.RegisterSingleton<IEventAggregator, EventAggregator>();
             ContainerInstance.RegisterSingleton<ParametersViewModel, ParametersViewModel>();
             ContainerInstance.RegisterSingleton<MonitorViewModel, MonitorViewModel>();
+            ContainerInstance.RegisterSingleton<AlarmMessageViewModel, AlarmMessageViewModel>();
             ContainerInstance.RegisterSingleton<MainViewModel, MainViewModel>();
             ContainerInstance.Verify();
         }

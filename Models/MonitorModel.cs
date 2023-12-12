@@ -18,9 +18,9 @@ namespace FatigueLifeTestMachine.Models
         [DisplayName("报警项")]
         public string MonitorName { get => _monitorName; set => _monitorName = value; }
 
-        private double? _monitorValue = null;
+        private double _monitorValue;
         [EpplusIgnore]
-        public double? MonitorValue { get => _monitorValue; set => _monitorValue = value; }
+        public double MonitorValue { get => _monitorValue; set { _monitorValue = value;NotifyOfPropertyChange(() => MonitorValue); } }
 
         private double? _minAlarmValue = null;
         [DisplayName("最小报警值")]
